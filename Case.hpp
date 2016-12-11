@@ -15,14 +15,10 @@ class Case
         }
         void setValeur(T v)
         {
-            cout<< "Set Valeur à " << v << endl; 
             valeur = v;
-            cout<< "Valeur à " << valeur << endl; 
         }
         T getValeur()
         {
-            cout<< "Get valeur à " << valeur << endl; 
-
             return valeur;   
         }
     private:
