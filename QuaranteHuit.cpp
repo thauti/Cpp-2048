@@ -18,7 +18,7 @@ QuaranteHuit::QuaranteHuit()
 };
 void QuaranteHuit::creerPlateau()
 {
-    plateau = new Plateau<int>(SIZE,SIZE); //Taille 2048 5x5
+    plateau = new Plateau<int>(SIZE,SIZE); //Taille 2048 4x4
     srand(time(0));
     int x1 = rand() % 4;
     int y1 = rand() % 4;
