@@ -58,6 +58,7 @@ int QuaranteHuit::partieterminee()
             */
         }
     }
+    return 0;
 }
 void QuaranteHuit::jouerlecoup(int dir)
 {
