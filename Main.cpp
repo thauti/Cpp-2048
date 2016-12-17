@@ -7,6 +7,6 @@ int main()
 {
     QuaranteHuit* j = new QuaranteHuit();
     j->creerPlateau();
-    j->afficher();
+    j->jouer();
     return 0;
 }

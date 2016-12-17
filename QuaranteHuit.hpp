@@ -8,6 +8,9 @@ class QuaranteHuit : public Jeu<int>
         QuaranteHuit();
         void creerPlateau();
         void afficher();
+        int partieterminee();
+        void jouerlecoup(int dir);
+
     private:
         Plateau<int> *plateau;
 };
