@@ -26,6 +26,7 @@ class Jeu
                     cout << "Veuillez entrer une direction (h)aut, (b)as, (d)roite, (g)auche : ";
                     cin >> input;
                 }
+                jouerlecoup(chartocode(input));
                 
             }
         }
