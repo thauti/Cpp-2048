@@ -31,7 +31,6 @@ void QuaranteHuit::creerPlateau()
     }
     plateau->setValeur(x1,y1,2);
     plateau->setValeur(x2,y2,2);
-    plateau->setValeur(x2+1,y2,2);
 }
 void QuaranteHuit::afficher()
 {
@@ -39,7 +38,7 @@ void QuaranteHuit::afficher()
     {
         for(int i=0;i<SIZE;i++)
         {
-            cout << plateau->getCase(i,j).getValeur();
+            cout << plateau->getCase(i,j).getValeur()<< " ";
         }
             cout << endl;
     }
@@ -230,6 +229,39 @@ void QuaranteHuit::jouerlecoup(int dir)
             }
         }
     }
+    ajouterNombre();
+}
 
-    
+ void QuaranteHuit::ajouterNombre()
+{
+    int tx, ty;
+    int k = 0;
+    for(int j=0;j<SIZE;j++)
+    {
+        for(int i=0; i<SIZE;i++)
+        {
+            if(plateau->getCase(i,j).getValeur() == 0)
+            {
+                k++;
+                tx = i;
+                ty = j;
+            }
+        }
+    }
+   if(k == 1)
+   {
+       plateau->setValeur(tx,ty,2);
+   }
+   if(k>1)
+   {
+       srand(time(0));
+       tx = rand() % 4;
+       ty = rand() % 4;
+       while(plateau->getCase(tx,ty).getValeur() != 0)
+       {
+           tx = rand() % 4;
+           ty = rand() % 4;
+       }
+       plateau->setValeur(tx,ty,2);
+   }
 }
