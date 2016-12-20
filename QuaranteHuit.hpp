@@ -6,7 +6,7 @@ class QuaranteHuit : public Jeu<int>
 {
     public:
         QuaranteHuit();
-        void creerPlateau();
+        void creerPlateau(int x, int y);
         void afficher();
         int partieterminee();
         void jouerlecoup(int dir);

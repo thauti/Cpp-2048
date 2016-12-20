@@ -8,10 +8,10 @@ class Plateau
     public:
         Plateau(const int x, const int y)
         {
-            plateau = new Case<T>*[y];
+            plateau = new Case<T>*[x];
             for(int i = 0; i<x;i++)
             {
-                plateau[i] = new Case<T>[x];
+                plateau[i] = new Case<T>[y];
             }
             taillex = x;
             tailley = y;

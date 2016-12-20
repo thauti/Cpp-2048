@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <ctime>
 
-#define SIZE 4
+
 #define HAUT 0
 #define BAS 1
 #define DROITE 2
@@ -63,9 +63,6 @@ int QuaranteHuit::partieterminee()
             {
                 k++;
             }
-            /*
-                TO DO: Implementer la cas où on peut plus jouer et dans ce cas retourner 2 
-            */
         }
     }
     if(k == 0)
@@ -206,9 +203,9 @@ void QuaranteHuit::jouerlecoup(int dir)
         if(dir == DROITE)
     {
         cout << "DROITE" << endl;
-        for(int j = plateau->getTailley()-1; j>=0;j--)
+        for(int j =0; j<plateau->getTailley(); j++)
         {
-            for(int i =0; i<plateau->getTaillex();i++)
+            for(int i= plateau->getTaillex()-1; i>=0; i--)
             {
                 if(i!=plateau->getTaillex()-1 && plateau->getCase(i,j).getValeur() != 0)
                 {

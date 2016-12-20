@@ -1,6 +1,7 @@
 #ifndef __JEU_H__
 #define __JEU_H__
 #include "Plateau.hpp"
+#include <ctime>
 
 using namespace std;
 template <class T>
@@ -14,24 +15,44 @@ class Jeu
         }
         int jouer()
         {
-            while(partieterminee() != 1) // TO DO == 2 (Perdu)
+            while(partieterminee() != 1 && partieterminee() != 2) // TO DO == 2 (Perdu)
             {
                 afficher();
                 char input;
-                cout << "Veuillez entrer une direction (h)aut, (b)as, (d)roite, (g)auche : ";
+                cout << "Veuillez entrer une direction (h)aut, (b)as, (d)roite, (g)auche ou (i)a: ";
                 cin >> input;
                 while(!entreevalide(input))
                 {
                     cout << "Invalide" << endl;
-                    cout << "Veuillez entrer une direction (h)aut, (b)as, (d)roite, (g)auche : ";
+                    cout << "Veuillez entrer une direction (h)aut, (b)as, (d)roite, (g)auche  ou (i)a: ";
                     cin >> input;
                 }
-                jouerlecoup(chartocode(input));
+                if(input == 'i')
+                {
+                    jouerIA();
+                }
+                else{jouerlecoup(chartocode(input));}
                 
             }
+            afficher();
+            if(partieterminee() == 1)
+            {
+                cout << "Gagné !" << endl;
+            }
+            if(partieterminee() == 2)
+            {
+                cout << "Perdu :(" << endl;
+            }
+        }
+        int jouerIA()
+        {
+            srand(time(0));
+            int i = rand() % 4;
+            jouerlecoup(chartocode(i));
+
         }
         bool entreevalide(char c){
-            if(c == 'h' || c =='b' || c == 'd' || c == 'g')
+            if(c == 'h' || c =='b' || c == 'd' || c == 'g' || c == 'i')
             {
                 return true;
             }
@@ -48,7 +69,7 @@ class Jeu
                 case 'g': return 3;
             }
         }
-        virtual void creerPlateau() = 0;
+        virtual void creerPlateau(int x, int y) = 0;
         virtual int partieterminee() = 0;
         virtual void afficher() = 0;
         virtual void jouerlecoup(int dir) = 0;
