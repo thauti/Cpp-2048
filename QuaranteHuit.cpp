@@ -31,7 +31,7 @@ void QuaranteHuit::creerPlateau()
     }
     plateau->setValeur(x1,y1,2);
     plateau->setValeur(x2,y2,2);
-    plateau->setValeur(x2,y2+1,2);
+    plateau->setValeur(x2+1,y2,2);
 }
 void QuaranteHuit::afficher()
 {
@@ -145,11 +145,91 @@ void QuaranteHuit::jouerlecoup(int dir)
             }
         }
     }
-    switch(dir)
+
+
+
+    if(dir == GAUCHE)
     {
-        case HAUT: break; // Jouer vers le HAUT
-        case BAS: break;
-        case DROITE: break;
-        case GAUCHE: break;
+        cout << "GAUCHE" << endl;
+        for(int j = 0; j<SIZE;j++)
+        {
+            for(int i =0; i<SIZE;i++)
+            {
+                if(i!=0 && plateau->getCase(i,j).getValeur() != 0)
+                {
+                    int u = i;
+                    while(u > 0 && plateau->getCase(u-1,j).getValeur() == 0)
+                    {
+                        u=u-1;
+                    }
+                    if(u-1 >= 0)
+                    {
+                        if(plateau->getCase(u-1,j).getValeur() == plateau->getCase(i,j).getValeur())
+                        {
+                            int tmp = plateau->getCase(i,j).getValeur();
+                            plateau->setValeur(i,j, 0);
+                            plateau->setValeur(u-1,j,tmp + plateau->getCase(u-1,j).getValeur());
+                            cout << "Addition" << endl;
+                        }
+                        else
+                        {
+                            int tmp = plateau->getCase(i,j).getValeur();
+                            plateau->setValeur(i,j, 0);
+                            plateau->setValeur(u,j, tmp);
+                        }
+                    }
+                    else
+                    {
+                        int tmp = plateau->getCase(i,j).getValeur();
+                        plateau->setValeur(i,j, 0);
+                        plateau->setValeur(u,j, tmp);
+                    }
+
+                }
+            }
+        }
     }
+        if(dir == DROITE)
+    {
+        cout << "DROITE" << endl;
+        for(int j = SIZE-1; j>=0;j--)
+        {
+            for(int i =0; i<SIZE;i++)
+            {
+                if(i!=SIZE-1 && plateau->getCase(i,j).getValeur() != 0)
+                {
+                    int u = i;
+                    while(u < SIZE-1 && plateau->getCase(u+1,j).getValeur() == 0)
+                    {
+                        u=u+1;
+                    }
+                    if(u+1 <= SIZE-1)
+                    {
+                        if(plateau->getCase(u+1,j).getValeur() == plateau->getCase(i,j).getValeur())
+                        {
+                            int tmp = plateau->getCase(i,j).getValeur();
+                            plateau->setValeur(i,j, 0);
+                            plateau->setValeur(u+1,j,tmp + plateau->getCase(u+1,j).getValeur());
+                            cout << "Addition" << endl;
+                        }
+                        else
+                        {
+                            int tmp = plateau->getCase(i,j).getValeur();
+                            plateau->setValeur(i,j, 0);
+                            plateau->setValeur(u,j, tmp);
+                        }
+                    }
+                    else
+                    {
+                        int tmp = plateau->getCase(i,j).getValeur();
+                        plateau->setValeur(i,j, 0);
+                        plateau->setValeur(u,j, tmp);
+                    }
+
+                }
+            }
+        }
+    }
+
+    
 }
