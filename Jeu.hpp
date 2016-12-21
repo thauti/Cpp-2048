@@ -2,6 +2,7 @@
 #define __JEU_H__
 #include "Plateau.hpp"
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 template <class T>
@@ -13,7 +14,7 @@ class Jeu
         {
             return plateau;
         }
-        int jouer()
+        void jouer()
         {
             while(partieterminee() != 1 && partieterminee() != 2) // TO DO == 2 (Perdu)
             {
@@ -31,7 +32,10 @@ class Jeu
                 {
                     jouerIA();
                 }
-                else{jouerlecoup(chartocode(input));}
+                else
+		{
+		    jouerlecoup(chartocode(input));
+		}
                 
             }
             afficher();
@@ -44,11 +48,11 @@ class Jeu
                 cout << "Perdu :(" << endl;
             }
         }
-        int jouerIA()
+        void jouerIA()
         {
             srand(time(0));
             int i = rand() % 4;
-            jouerlecoup(chartocode(i));
+            jouerlecoup(i);
 
         }
         bool entreevalide(char c){
@@ -67,6 +71,7 @@ class Jeu
                 case 'b': return 1;
                 case 'd': return 2;
                 case 'g': return 3;
+		default: return -1;
             }
         }
         virtual void creerPlateau(int x, int y) = 0;

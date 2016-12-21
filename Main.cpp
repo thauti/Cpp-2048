@@ -1,12 +1,20 @@
 #include <iostream>
 #include "QuaranteHuit.hpp"
+#include "Taquin.hpp"
 
 using namespace std;
 
 int main()
 {
-    QuaranteHuit* j = new QuaranteHuit();
-    j->creerPlateau(10,10);
-    j->jouer();
+    if(!true){
+	QuaranteHuit* j = new QuaranteHuit();
+    	j->creerPlateau(4,4);
+    	j->jouer();
+    }
+    else{
+	Taquin* t = new Taquin();
+    	t->creerPlateau(2,2);
+    	t->jouer();
+    }
     return 0;
 }
