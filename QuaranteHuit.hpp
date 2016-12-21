@@ -10,9 +10,8 @@ class QuaranteHuit : public Jeu<int>
         void afficher();
         int partieterminee();
         void jouerlecoup(int dir);
-        void ajouterNombre();
-
-    private:
+        virtual void ajouterNombre();
         Plateau<int> *plateau;
+    private:
 };
 #endif

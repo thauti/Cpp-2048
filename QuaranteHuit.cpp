@@ -14,6 +14,7 @@ using namespace std;
 
 QuaranteHuit::QuaranteHuit()
 {
+
 };
 void QuaranteHuit::creerPlateau(int x, int y)
 {
