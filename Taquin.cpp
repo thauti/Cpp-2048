@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <set>
+#include <random>
 
 #define HAUT 0
 #define BAS 1
@@ -15,24 +17,64 @@ using namespace std;
 Taquin::Taquin()
 {
 };
+
+bool Taquin::estSolvable(vector<int> vec, int x, int y, int pos)
+{
+    int tmp = 0; 
+    int cpt = 0;
+    int cpt2 = 0;
+    set<int> s;
+    for(int i = 0; i < (x*y); i++)
+    {
+	cpt = 0;
+	if(s.find(i) != s.end())
+	{
+	    continue;
+	}
+	tmp = i;
+	do
+	{
+	    s.insert(tmp);
+	    tmp = vec[tmp];
+	    cpt++;
+	}
+	while(tmp != i);
+	cpt2 += cpt-1;
+    }
+    cpt2 += (x*y-1);
+    int dis = (y-1-pos/y) + (x-1-pos%x);
+    return (cpt2%2) == (dis%2);
+}
+
 void Taquin::creerPlateau(int x, int y)
 {
     plateau = new Plateau<int>(x,y);
     srand(time(0));
+    random_device rd;
     vector<int> vec;
+    vector<int> vec2;
     int n = 0;
     while(n < x*y)
     {
       vec.push_back(n++);
-    }
+    } 
     for(int i = 0; i < plateau->getTaillex(); i++)
     {
       for(int j = 0; j < plateau->getTailley(); j++)
       {
-	int k = rand() % vec.size();
+	int k = rd() % vec.size();
 	plateau->setValeur(i,j,vec[k]);
+	if(vec[k] == 0)
+	{
+	    n = vec2.size();
+	}
+	vec2.push_back(vec[k]);
 	vec.erase(vec.begin()+k);
       }
+    }
+    if(!estSolvable(vec2,x,y,n))
+    {
+	creerPlateau(x,y);
     }
 }
 
@@ -54,32 +96,32 @@ string Taquin::format(int n)
 
 void Taquin::afficher()
 {
-    for(int j=0;j<plateau->getTailley();j++)
+    for(int j=0;j<plateau->getTaillex();j++)
     {
     	cout << "-";
-    	for(int j=0;j<plateau->getTaillex();j++)
+    	for(int j=0;j<plateau->getTailley();j++)
     	{
 		cout << "------";
     	}
     	cout << endl << "|";
-    	for(int j=0;j<plateau->getTaillex();j++)
+    	for(int j=0;j<plateau->getTailley();j++)
     	{
 		cout << "     |";
     	}
 	cout << endl << "|";
-        for(int i=0;i<plateau->getTaillex();i++)
+        for(int i=0;i<plateau->getTailley();i++)
         {
-        	cout << format(plateau->getCase(i,j).getValeur()) << "|";
+        	cout << format(plateau->getCase(j,i).getValeur()) << "|";
         }
     	cout << endl << "|";
-    	for(int j=0;j<plateau->getTaillex();j++)
+    	for(int j=0;j<plateau->getTailley();j++)
     	{
 		cout << "     |";
     	}
 	cout << endl;
     }
     cout << "-";
-    for(int j=0;j<plateau->getTaillex();j++)
+    for(int j=0;j<plateau->getTailley();j++)
     {
 	cout << "------";
     }
@@ -91,7 +133,7 @@ int Taquin::partieterminee()
     {
         for(int j=0; j<plateau->getTailley();j++)
         {
-	  if(plateau->getCase(i,j).getValeur() != (j*plateau->getTailley()+i+1) && plateau->getCase(i,j).getValeur() != 0)
+	  if(plateau->getCase(i,j).getValeur() != (i*plateau->getTaillex()+j+1) && plateau->getCase(i,j).getValeur() != 0)
 	  {
 	    return 0;
 	  }
@@ -101,9 +143,9 @@ int Taquin::partieterminee()
 }
 void Taquin::jouerlecoup(int dir)
 {
-  if(dir == GAUCHE)
+  if(dir == HAUT)
     {
-      cout << "GAUCHE" << endl;
+      cout << "HAUT" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -122,9 +164,9 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-  if(dir == DROITE)
+  if(dir == BAS)
     {
-      cout << "DROITE" << endl;
+      cout << "BAS" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -143,9 +185,9 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-  if(dir == BAS)
+  if(dir == DROITE)
     {
-      cout << "BAS" << endl;
+      cout << "DROITE" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -164,9 +206,9 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-    if(dir == HAUT)
+    if(dir == GAUCHE)
     {
-      cout << "HAUT" << endl;
+      cout << "GAUCHE" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
