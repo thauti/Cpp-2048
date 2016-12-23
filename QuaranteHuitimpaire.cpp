@@ -58,31 +58,22 @@ void QuaranteHuitimpaire::ajouterNombre()
    if(k == 1)
    {
         srand(time(0));
-        int d = rand() % 7;
-        if(d == 0)
+        int d = rand() % 6;
+        switch(d)
         {
-           plateau->setValeur(tx,ty,4);
-        }
-        if(d == 1)
-        {
-         plateau->setValeur(tx,ty,2);
-        }
-        if(d==3)
-        {
-         plateau->setValeur(tx,ty,1);
-
-        }
-        if(d==4)
-        {
-             plateau->setValeur(tx,ty,3);
-        }
-        if(d==5)
-        {
-             plateau->setValeur(tx,ty,5);
-        }
-        if(d==6)
-        {
-             plateau->setValeur(tx,ty,7);
+            case 0: plateau->setValeur(tx,ty,4);
+                    break;
+            case 1: plateau->setValeur(tx,ty,2);
+                    break;
+            case 2: plateau->setValeur(tx,ty,1);
+                    break;
+            case 3: plateau->setValeur(tx,ty,3);
+                    break;
+            case 4: plateau->setValeur(tx,ty,5);
+                    break;
+            case 5: plateau->setValeur(tx,ty,7);
+                    break;
+            default: plateau->setValeur(tx,ty,2);break;
         }
    }
    if(k>1)
@@ -95,31 +86,22 @@ void QuaranteHuitimpaire::ajouterNombre()
            tx = rand() % plateau->getTaillex();
            ty = rand() % plateau->getTailley();
        }
-        int d = rand() % 7;
-        if(d == 0)
+        int d = rand() % 6;
+        switch(d)
         {
-           plateau->setValeur(tx,ty,4);
-        }
-        if(d == 1)
-        {
-         plateau->setValeur(tx,ty,2);
-        }
-        if(d==3)
-        {
-         plateau->setValeur(tx,ty,1);
-
-        }
-        if(d==4)
-        {
-             plateau->setValeur(tx,ty,3);
-        }
-        if(d==5)
-        {
-             plateau->setValeur(tx,ty,5);
-        }
-        if(d==6)
-        {
-             plateau->setValeur(tx,ty,7);
+            case 0: plateau->setValeur(tx,ty,4);
+                    break;
+            case 1: plateau->setValeur(tx,ty,2);
+                    break;
+            case 2: plateau->setValeur(tx,ty,1);
+                    break;
+            case 3: plateau->setValeur(tx,ty,3);
+                    break;
+            case 4: plateau->setValeur(tx,ty,5);
+                    break;
+            case 5: plateau->setValeur(tx,ty,7);
+                    break;
+            default: plateau->setValeur(tx,ty,2);break;
         }
    }
 }
