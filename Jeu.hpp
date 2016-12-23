@@ -3,6 +3,7 @@
 #include "Plateau.hpp"
 #include <ctime>
 #include <iostream>
+#include <random>
 
 using namespace std;
 template <class T>
@@ -16,7 +17,7 @@ class Jeu
         }
         void jouer()
         {
-            while(partieterminee() != 1 && partieterminee() != 2) // TO DO == 2 (Perdu)
+            while(partieterminee() != 1 && partieterminee() != 2)
             {
                 afficher();
                 char input;
@@ -50,8 +51,8 @@ class Jeu
         }
         void jouerIA()
         {
-            srand(time(0));
-            int i = rand() % 4;
+	    random_device rd;
+            int i = rd() % 4;
             jouerlecoup(i);
 
         }
@@ -74,12 +75,60 @@ class Jeu
 		default: return -1;
             }
         }
+	string format(int n)
+	{
+	    string s = n==0?" ":to_string(n);
+	    int l = s.length();
+	    for(int i = 0; i < (5-l)/2; i++)
+	    {
+	    	s = " " + s;
+	    }
+	    int j = (5-l)%2==0?0:1;
+	    for(int i = 0; i < (5-l)/2+j; i++)
+	    {
+	    	s += " ";
+	    }
+	    return s;
+	}
+
+	void afficher()
+	{
+	    for(int j=0;j<plateau->getTailley();j++)
+	    {
+	    	cout << "-";
+	    	for(int j=0;j<plateau->getTaillex();j++)
+	    	{
+			cout << "------";
+	    	}
+	    	cout << endl << "|";
+	    	for(int j=0;j<plateau->getTaillex();j++)
+	    	{
+			cout << "     |";
+	    	}
+		cout << endl << "|";
+		for(int i=0;i<plateau->getTaillex();i++)
+		{
+			cout << format(plateau->getCase(i,j).getValeur()) << "|";
+		}
+	    	cout << endl << "|";
+	    	for(int j=0;j<plateau->getTaillex();j++)
+	    	{
+			cout << "     |";
+	    	}
+		cout << endl;
+	    }
+	    cout << "-";
+	    for(int j=0;j<plateau->getTaillex();j++)
+	    {
+		cout << "------";
+	    }
+	    cout << endl;
+	}
         virtual void creerPlateau(int x, int y) = 0;
         virtual int partieterminee() = 0;
-        virtual void afficher() = 0;
         virtual void jouerlecoup(int dir) = 0;
 
-    private:
+    protected:
         Plateau<T> *plateau;
 };
 #endif

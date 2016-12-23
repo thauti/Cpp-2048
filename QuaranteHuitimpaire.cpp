@@ -14,30 +14,6 @@
 QuaranteHuitimpaire::QuaranteHuitimpaire()
 {
 };
-/*void QuaranteHuitimpaire::creerPlateau(int x, int y)
-{
-    cout << "Hello" <<endl;
-    plateau = new Plateau<int>(x,y); //Taille 2048 4x4
-    random_device rd;
-    int x1 = rd() % plateau->getTaillex();
-    int y1 = rd() % plateau->getTailley();
-    int x2 = x1;
-    int y2 = y1;
-    while(x2 == x1 || y2 == y1)
-    {
-        x2 = rd() % plateau->getTaillex();
-        y2 = rd() % plateau->getTailley();
-    }
-    for(int j=0;j<plateau->getTailley();j++)
-    {
-        for(int i=0;i<plateau->getTaillex();i++)
-        {
-            plateau->setValeur(i,j,0);
-        }
-    }
-    plateau->setValeur(x1,y1,2);
-    plateau->setValeur(x2,y2,2);
-}*/
 void QuaranteHuitimpaire::ajouterNombre()
 {
     cout << "Test" << endl;

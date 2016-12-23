@@ -72,56 +72,6 @@ void Taquin::creerPlateau(int x, int y)
 	creerPlateau(x,y);
     }
 }
-
-string Taquin::format(int n)
-{
-    string s = n==0?" ":to_string(n);
-    int l = s.length();
-    for(int i = 0; i < (5-l)/2; i++)
-    {
-    	s = " " + s;
-    }
-    int j = (5-l)%2==0?0:1;
-    for(int i = 0; i < (5-l)/2+j; i++)
-    {
-    	s += " ";
-    }
-    return s;
-}
-
-void Taquin::afficher()
-{
-    for(int j=0;j<plateau->getTaillex();j++)
-    {
-    	cout << "-";
-    	for(int j=0;j<plateau->getTailley();j++)
-    	{
-		cout << "------";
-    	}
-    	cout << endl << "|";
-    	for(int j=0;j<plateau->getTailley();j++)
-    	{
-		cout << "     |";
-    	}
-	cout << endl << "|";
-        for(int i=0;i<plateau->getTailley();i++)
-        {
-        	cout << format(plateau->getCase(j,i).getValeur()) << "|";
-        }
-    	cout << endl << "|";
-    	for(int j=0;j<plateau->getTailley();j++)
-    	{
-		cout << "     |";
-    	}
-	cout << endl;
-    }
-    cout << "-";
-    for(int j=0;j<plateau->getTailley();j++)
-    {
-	cout << "------";
-    }
-    cout << endl;
-}
 int Taquin::partieterminee()
 {
     for(int i=0; i<plateau->getTaillex();i++)
@@ -138,7 +88,7 @@ int Taquin::partieterminee()
 }
 void Taquin::jouerlecoup(int dir)
 {
-  if(dir == HAUT)
+  if(dir == GAUCHE)
     {
       for(int i=0; i<plateau->getTaillex();i++)
 	{
@@ -158,7 +108,7 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-  if(dir == BAS)
+  if(dir == DROITE)
     {
       for(int i=0; i<plateau->getTaillex();i++)
 	{
@@ -178,7 +128,7 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-  if(dir == DROITE)
+  if(dir == BAS)
     {
       for(int i=0; i<plateau->getTaillex();i++)
 	{
@@ -198,7 +148,7 @@ void Taquin::jouerlecoup(int dir)
 	    }
 	}
     }
-    if(dir == GAUCHE)
+    if(dir == HAUT)
     {
       for(int i=0; i<plateau->getTaillex();i++)
 	{

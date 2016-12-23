@@ -39,17 +39,6 @@ void QuaranteHuit::creerPlateau(int x, int y)
     plateau->setValeur(x1,y1,2);
     plateau->setValeur(x2,y2,2);
 }
-void QuaranteHuit::afficher()
-{
-    for(int j=0;j<plateau->getTailley();j++)
-    {
-        for(int i=0;i<plateau->getTaillex();i++)
-        {
-            cout << plateau->getCase(i,j).getValeur()<< " ";
-        }
-            cout << endl;
-    }
-}
 int QuaranteHuit::partieterminee()
 {
     int k = 0;

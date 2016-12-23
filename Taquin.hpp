@@ -10,13 +10,8 @@ class Taquin : public Jeu<int>
     public:
         Taquin();
         void creerPlateau(int x, int y);
-        void afficher();
         int partieterminee();
         void jouerlecoup(int dir);
-	string format(int n);
 	bool estSolvable(vector<int> vec, int x, int y, int pos);
-
-    private:
-        Plateau<int> *plateau;
 };
 #endif
