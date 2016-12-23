@@ -2,7 +2,7 @@
 #include "Plateau.hpp"
 #include "QuaranteHuit.hpp"
 #include <cstdlib>
-#include <ctime>
+#include <random>
 
 
 #define HAUT 0
@@ -19,15 +19,15 @@ QuaranteHuit::QuaranteHuit()
 void QuaranteHuit::creerPlateau(int x, int y)
 {
     plateau = new Plateau<int>(x,y); //Taille 2048 4x4
-    srand(time(0));
-    int x1 = rand() % plateau->getTaillex();
-    int y1 = rand() % plateau->getTailley();
+    random_device rd;
+    int x1 = rd() % plateau->getTaillex();
+    int y1 = rd() % plateau->getTailley();
     int x2 = x1;
     int y2 = y1;
     while(x2 == x1 || y2 == y1)
     {
-        x2 = rand() % plateau->getTaillex();
-        y2 = rand() % plateau->getTailley();
+        x2 = rd() % plateau->getTaillex();
+        y2 = rd() % plateau->getTailley();
     }
     for(int j=0;j<plateau->getTailley();j++)
     {
@@ -77,7 +77,6 @@ void QuaranteHuit::jouerlecoup(int dir)
 {
     if(dir == HAUT)
     {
-        cout << "Haut" << endl;
         for(int j = 0; j<plateau->getTailley();j++)
         {
             for(int i =0; i<plateau->getTaillex();i++)
@@ -91,12 +90,11 @@ void QuaranteHuit::jouerlecoup(int dir)
                     }
                     if(u-1 >= 0)
                     {
-                        if(plateau->getCase(i,u-1).getValeur() == plateau->getCase(i,j).getValeur())
+                        if(abs(plateau->getCase(i,u-1).getValeur()) == abs(plateau->getCase(i,j).getValeur()))
                         {
                             int tmp = plateau->getCase(i,j).getValeur();
                             plateau->setValeur(i,j, 0);
                             plateau->setValeur(i,u-1,tmp + plateau->getCase(i,u-1).getValeur());
-                            cout << "Addition" << endl;
                         }
                         else
                         {
@@ -118,7 +116,6 @@ void QuaranteHuit::jouerlecoup(int dir)
     }
         if(dir == BAS)
     {
-        cout << "BAS" << endl;
         for(int j = plateau->getTailley()-1; j>=0;j--)
         {
             for(int i =0; i<plateau->getTaillex();i++)
@@ -132,12 +129,11 @@ void QuaranteHuit::jouerlecoup(int dir)
                     }
                     if(u+1 <= plateau->getTailley()-1)
                     {
-                        if(plateau->getCase(i,u+1).getValeur() == plateau->getCase(i,j).getValeur())
+                        if(abs(plateau->getCase(i,u+1).getValeur()) == abs(plateau->getCase(i,j).getValeur()))
                         {
                             int tmp = plateau->getCase(i,j).getValeur();
                             plateau->setValeur(i,j, 0);
                             plateau->setValeur(i,u+1,tmp + plateau->getCase(i,u+1).getValeur());
-                            cout << "Addition" << endl;
                         }
                         else
                         {
@@ -162,7 +158,6 @@ void QuaranteHuit::jouerlecoup(int dir)
 
     if(dir == GAUCHE)
     {
-        cout << "GAUCHE" << endl;
         for(int j = 0; j<plateau->getTailley();j++)
         {
             for(int i =0; i<plateau->getTaillex();i++)
@@ -176,12 +171,11 @@ void QuaranteHuit::jouerlecoup(int dir)
                     }
                     if(u-1 >= 0)
                     {
-                        if(plateau->getCase(u-1,j).getValeur() == plateau->getCase(i,j).getValeur())
+                        if(abs(plateau->getCase(u-1,j).getValeur()) == abs(plateau->getCase(i,j).getValeur()))
                         {
                             int tmp = plateau->getCase(i,j).getValeur();
                             plateau->setValeur(i,j, 0);
                             plateau->setValeur(u-1,j,tmp + plateau->getCase(u-1,j).getValeur());
-                            cout << "Addition" << endl;
                         }
                         else
                         {
@@ -203,7 +197,6 @@ void QuaranteHuit::jouerlecoup(int dir)
     }
         if(dir == DROITE)
     {
-        cout << "DROITE" << endl;
         for(int j =0; j<plateau->getTailley(); j++)
         {
             for(int i= plateau->getTaillex()-1; i>=0; i--)
@@ -217,12 +210,11 @@ void QuaranteHuit::jouerlecoup(int dir)
                     }
                     if(u+1 <= plateau->getTaillex()-1)
                     {
-                        if(plateau->getCase(u+1,j).getValeur() == plateau->getCase(i,j).getValeur())
+                        if(abs(plateau->getCase(u+1,j).getValeur()) == abs(plateau->getCase(i,j).getValeur()))
                         {
                             int tmp = plateau->getCase(i,j).getValeur();
                             plateau->setValeur(i,j, 0);
                             plateau->setValeur(u+1,j,tmp + plateau->getCase(u+1,j).getValeur());
-                            cout << "Addition" << endl;
                         }
                         else
                         {
@@ -263,8 +255,8 @@ void QuaranteHuit::jouerlecoup(int dir)
     }
    if(k == 1)
    {
-       srand(time(0));
-       int d = rand() % 2;
+       random_device rd;
+       int d = rd() % 2;
        if(d == 0)
        {
            plateau->setValeur(tx,ty,4);
@@ -275,13 +267,13 @@ void QuaranteHuit::jouerlecoup(int dir)
    }
    if(k>1)
    {
-       srand(time(0));
-       tx = rand() % plateau->getTaillex();
-       ty = rand() % plateau->getTailley();
+       random_device rd;
+       tx = rd() % plateau->getTaillex();
+       ty = rd() % plateau->getTailley();
        while(plateau->getCase(tx,ty).getValeur() != 0)
        {
-           tx = rand() % plateau->getTaillex();
-           ty = rand() % plateau->getTailley();
+           tx = rd() % plateau->getTaillex();
+           ty = rd() % plateau->getTailley();
        }
        plateau->setValeur(tx,ty,2);
    }

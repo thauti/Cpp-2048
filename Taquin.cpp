@@ -2,10 +2,6 @@
 #include "Plateau.hpp"
 #include "Taquin.hpp"
 #include <cstdlib>
-#include <ctime>
-#include <vector>
-#include <set>
-#include <random>
 
 #define HAUT 0
 #define BAS 1
@@ -49,7 +45,6 @@ bool Taquin::estSolvable(vector<int> vec, int x, int y, int pos)
 void Taquin::creerPlateau(int x, int y)
 {
     plateau = new Plateau<int>(x,y);
-    srand(time(0));
     random_device rd;
     vector<int> vec;
     vector<int> vec2;
@@ -80,7 +75,7 @@ void Taquin::creerPlateau(int x, int y)
 
 string Taquin::format(int n)
 {
-    string s = to_string(n);
+    string s = n==0?" ":to_string(n);
     int l = s.length();
     for(int i = 0; i < (5-l)/2; i++)
     {
@@ -145,7 +140,6 @@ void Taquin::jouerlecoup(int dir)
 {
   if(dir == HAUT)
     {
-      cout << "HAUT" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -166,7 +160,6 @@ void Taquin::jouerlecoup(int dir)
     }
   if(dir == BAS)
     {
-      cout << "BAS" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -187,7 +180,6 @@ void Taquin::jouerlecoup(int dir)
     }
   if(dir == DROITE)
     {
-      cout << "DROITE" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)
@@ -208,7 +200,6 @@ void Taquin::jouerlecoup(int dir)
     }
     if(dir == GAUCHE)
     {
-      cout << "GAUCHE" << endl;
       for(int i=0; i<plateau->getTaillex();i++)
 	{
 	  for(int j=0; j<plateau->getTailley();j++)

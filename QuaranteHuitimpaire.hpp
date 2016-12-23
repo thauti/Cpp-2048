@@ -7,10 +7,7 @@ class QuaranteHuitimpaire : public QuaranteHuit
 {
     public:
         QuaranteHuitimpaire();
-        void creerPlateau(int x,int y) override;
-        void ajouterNombre();
-
-    private:
-        //Plateau<int> *plateau;
+        //void creerPlateau(int x,int y) override;
+        void ajouterNombre() override;
 };
 #endif

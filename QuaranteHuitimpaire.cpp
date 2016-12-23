@@ -3,7 +3,7 @@
 #include "QuaranteHuit.hpp"
 #include "QuaranteHuitimpaire.hpp"
 #include <cstdlib>
-#include <ctime>
+#include <random>
 
 
 #define HAUT 0
@@ -14,19 +14,19 @@
 QuaranteHuitimpaire::QuaranteHuitimpaire()
 {
 };
-void QuaranteHuitimpaire::creerPlateau(int x, int y)
+/*void QuaranteHuitimpaire::creerPlateau(int x, int y)
 {
     cout << "Hello" <<endl;
     plateau = new Plateau<int>(x,y); //Taille 2048 4x4
-    srand(time(0));
-    int x1 = rand() % plateau->getTaillex();
-    int y1 = rand() % plateau->getTailley();
+    random_device rd;
+    int x1 = rd() % plateau->getTaillex();
+    int y1 = rd() % plateau->getTailley();
     int x2 = x1;
     int y2 = y1;
     while(x2 == x1 || y2 == y1)
     {
-        x2 = rand() % plateau->getTaillex();
-        y2 = rand() % plateau->getTailley();
+        x2 = rd() % plateau->getTaillex();
+        y2 = rd() % plateau->getTailley();
     }
     for(int j=0;j<plateau->getTailley();j++)
     {
@@ -37,7 +37,7 @@ void QuaranteHuitimpaire::creerPlateau(int x, int y)
     }
     plateau->setValeur(x1,y1,2);
     plateau->setValeur(x2,y2,2);
-}
+}*/
 void QuaranteHuitimpaire::ajouterNombre()
 {
     cout << "Test" << endl;
@@ -57,8 +57,8 @@ void QuaranteHuitimpaire::ajouterNombre()
     }
    if(k == 1)
    {
-        srand(time(0));
-        int d = rand() % 6;
+        random_device rd;
+        int d = rd() % 6;
         switch(d)
         {
             case 0: plateau->setValeur(tx,ty,4);
@@ -78,13 +78,13 @@ void QuaranteHuitimpaire::ajouterNombre()
    }
    if(k>1)
    {
-       srand(time(0));
-       tx = rand() % plateau->getTaillex();
-       ty = rand() % plateau->getTailley();
+       random_device rd;
+       tx = rd() % plateau->getTaillex();
+       ty = rd() % plateau->getTailley();
        while(plateau->getCase(tx,ty).getValeur() != 0)
        {
-           tx = rand() % plateau->getTaillex();
-           ty = rand() % plateau->getTailley();
+           tx = rd() % plateau->getTaillex();
+           ty = rd() % plateau->getTailley();
        }
         int d = rand() % 6;
         switch(d)

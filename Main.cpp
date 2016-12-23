@@ -1,13 +1,14 @@
 #include <iostream>
 #include "QuaranteHuit.hpp"
 #include "QuaranteHuitimpaire.hpp"
+#include "QuaranteHuitNegatif.hpp"
 #include "Taquin.hpp"
 
 using namespace std;
 
 int main()
 {
-    int jeu = 2;
+    int jeu = 3;
     if(jeu == 1){
 	QuaranteHuit* j = new QuaranteHuit();
     	j->creerPlateau(4,4);
@@ -21,6 +22,12 @@ int main()
     if(jeu == 3)
     {
 	QuaranteHuitimpaire* j = new QuaranteHuitimpaire();
+	j->creerPlateau(4,4);
+	j->jouer();
+    }
+    if(jeu == 4)
+    {
+	QuaranteHuitNegatif* j = new QuaranteHuitNegatif();
 	j->creerPlateau(4,4);
 	j->jouer();
     }

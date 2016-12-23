@@ -1,6 +1,7 @@
 #ifndef __2048_H__
 #define __2048_H__
 #include "Jeu.hpp"
+#include <random>
 
 class QuaranteHuit : public Jeu<int>
 {
@@ -12,6 +13,5 @@ class QuaranteHuit : public Jeu<int>
         void jouerlecoup(int dir);
         virtual void ajouterNombre();
         Plateau<int> *plateau;
-    private:
 };
 #endif
