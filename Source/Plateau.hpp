@@ -22,16 +22,10 @@ class Plateau
         int getTailley(){
             return tailley;
         }
-        /*
-        Ne fonctionne pas, renvoie une copie de l'objet et non une référence
-        */
         Case<T> getCase(int x, int y)
         {
             return plateau[x][y];
         }
-        /*
-        Solution tricky
-        */
         void setValeur(int x, int y, int v)
         {
             plateau[x][y] = v;
